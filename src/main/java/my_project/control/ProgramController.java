@@ -20,7 +20,6 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
 
-    private Apple apple01;
     private Apple apple02;
     private Apple apple03;
     private Apple apple04;
@@ -52,12 +51,9 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-
         PowerA1 = new PowerApple(100,100);
         viewController.draw(PowerA1);
 
-        apple01 = new Apple(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
-        viewController.draw(apple01);
         apple02 = new Apple(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
         viewController.draw(apple02);
         apple03 = new Apple(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
@@ -92,9 +88,7 @@ public class ProgramController {
     public void updateProgram(double dt){
         //TODO 08 Nachdem Sie die TODOs 01-07 erledigt haben: Setzen Sie um, dass im Falle einer Kollision (siehe TODO 06 bzw. 07) zwischen dem Spieler und dem Apfel bzw. dem Spieler und der Birne, die jumpBack()-Methode von dem Apfel bzw. der Birne aufgerufen wird.
         //Weitere TODOs folgen und werden im Unterricht formuliert. Spätestens nach TODO 08 sollte der Aufbau des Projekts durchdacht werden.
-        if(checkAndHandleCollision(apple01)){
-            apple01.jumpBack();
-        }
+
         if(checkAndHandleCollision(apple02)){
             apple02.jumpBack();
         }
@@ -138,7 +132,6 @@ public class ProgramController {
             player01.resetSpeedTimer();
 
         }
-        System.out.println(player01.getSpeed());
     }
     private boolean checkAndHandleCollision(Apple a){
         return a.collidesWith(player01);

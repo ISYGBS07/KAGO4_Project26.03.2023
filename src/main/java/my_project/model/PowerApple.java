@@ -5,20 +5,20 @@ import KAGO_framework.view.DrawTool;
 import java.awt.*;
 
 public class PowerApple extends Apple{
-        private double w;
-        private double h;
         private double speedBuff;
     public PowerApple(double x,double y){
         super(x,y);
-        w = 50;
-        h = 50;
 
     }
 
     public void draw(DrawTool drawTool) {
-        super.draw(drawTool);
-        drawTool.setCurrentColor(new Color(88, 48, 6));
-        drawTool.drawFilledRectangle(x-w/6,y-h/4-radius,w/3,h/2);
+
+        drawTool.setCurrentColor(new Color(255, 246, 103));
+        drawTool.drawFilledCircle(x,y,radius);
+        drawTool.setCurrentColor(0,0,0,255);
+        drawTool.drawCircle(x,y,radius);
+        drawTool.setCurrentColor(new Color(68, 31, 2));
+        drawTool.drawFilledRectangle(x - 5, y - 45, 10,20);
     }
 
     public void update(){
