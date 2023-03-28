@@ -1,12 +1,13 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
 import my_project.Config;
 import my_project.model.Apple;
 import my_project.model.Pear;
 import my_project.model.Player;
 import my_project.model.PowerApple;
+
+import java.awt.event.KeyEvent;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -31,9 +32,11 @@ public class ProgramController {
     private Pear pear04;
     private Pear pear05;
 
-    private PowerApple PowerA1;
+    private PowerApple Power01;
 
     private Player player01;
+    private Player player02;
+
 
     /**
      * Konstruktor
@@ -51,8 +54,9 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        PowerA1 = new PowerApple(100,100);
-        viewController.draw(PowerA1);
+        Power01 = new PowerApple(100,100);
+        viewController.draw(Power01);
+
 
         apple02 = new Apple(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
         viewController.draw(apple02);
@@ -75,9 +79,12 @@ public class ProgramController {
         pear05 = new Pear(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
         viewController.draw(pear05);
 
-        player01 = new Player(50, Config.WINDOW_HEIGHT-100);
+        player01 = new Player(50, Config.WINDOW_HEIGHT-100, KeyEvent.VK_A, KeyEvent.VK_D);
         viewController.draw(player01);
         viewController.register(player01);
+        player02 = new Player(150, Config.WINDOW_HEIGHT-100, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+        viewController.draw(player02);
+        viewController.register(player02);
 
     }
 
@@ -117,11 +124,44 @@ public class ProgramController {
         if(checkAndHandleCollision(pear05)){
             pear05.jumpBack();
         }
+        if(checkAndHandleCollision2(apple02)){
+            apple02.jumpBack();
+        }
+        if(checkAndHandleCollision2(apple03)){
+            apple03.jumpBack();
+        }
+        if(checkAndHandleCollision2(apple04)){
+            apple04.jumpBack();
+        }
+        if(checkAndHandleCollision2(apple05)){
+            apple05.jumpBack();
+        }
 
-        if(checkAndHandleCollision(PowerA1)){
-            PowerA1.jumpBack();
-            player01.speedUp(PowerA1.getSpeedBuff()+ player01.getSpeed());
+        if(checkAndHandleCollision2(pear01)){
+            pear01.jumpBack();
+        }
+        if(checkAndHandleCollision2(pear02)){
+            pear02.jumpBack();
+        }
+        if(checkAndHandleCollision2(pear03)){
+            pear03.jumpBack();
+        }
+        if(checkAndHandleCollision2(pear04)){
+            pear04.jumpBack();
+        }
+        if(checkAndHandleCollision2(pear05)){
+            pear05.jumpBack();
+        }
+
+        if(checkAndHandleCollision(Power01)){
+            Power01.jumpBack();
+            player01.speedUp(Power01.getSpeedBuff()+ player01.getSpeed());
             player01.setTrueSpeedHIHI();
+        }
+        if(checkAndHandleCollision2(Power01)){
+            Power01.jumpBack();
+            player02.speedUp(Power01.getSpeedBuff()+ player02.getSpeed());
+            player02.setTrueSpeedHIHI();
         }
         if(player01.getSpeedHIHI() == true){
             player01.setSpeedTimer(dt);
@@ -132,15 +172,30 @@ public class ProgramController {
             player01.resetSpeedTimer();
 
         }
+        if(player02.getSpeedHIHI() == true){
+            player02.setSpeedTimer(dt);
+        }
+        if(player02.getSpeedTimer() > 5){
+            player02.speedUp(150);
+            player02.setFalseSpeedHIHI();
+            player02.resetSpeedTimer();
+
+        }
     }
     private boolean checkAndHandleCollision(Apple a){
         return a.collidesWith(player01);
+    }
+    private boolean checkAndHandleCollision(Pear p){
+        return p.collidesWith(player01);
     }
     //TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
 
     //TODO 07 Fügen Sie eine Methode checkAndHandleCollision(Pear p) hinzu. Diese gibt true zurück, falls das Pear-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
 
-    private boolean checkAndHandleCollision(Pear p){
-        return p.collidesWith(player01);
+    private boolean checkAndHandleCollision2(Pear p2){
+        return p2.collidesWith(player02);
+    }
+    private boolean checkAndHandleCollision2(Apple a2){
+        return a2.collidesWith(player02);
     }
 }

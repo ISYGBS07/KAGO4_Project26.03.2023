@@ -23,7 +23,7 @@ public class Player extends InteractiveGraphicalObject {
     private int keyToGoRight;
     private int direction;
 
-    public Player(double x, double y){
+    public Player(double x, double y , int goLeft, int goRight){
         this.x = x;
         this.y = y;
         speedTimer = 0;
@@ -33,8 +33,8 @@ public class Player extends InteractiveGraphicalObject {
         height = 40;
 
 
-        this.keyToGoLeft    = KeyEvent.VK_A;
-        this.keyToGoRight   = KeyEvent.VK_D;
+        this.keyToGoLeft    = goLeft; //KeyEvent.VK_A;
+        this.keyToGoRight   = goRight; //KeyEvent.VK_D;
         this.direction      = -1; //-1 keine Bewegung, 0 nach rechts, 2 nach links
     }
 
@@ -72,6 +72,7 @@ public class Player extends InteractiveGraphicalObject {
         if(key == keyToGoRight){
             direction = 0;
         }
+
     }
 
     @Override
@@ -79,7 +80,7 @@ public class Player extends InteractiveGraphicalObject {
         if(key == keyToGoLeft){
             direction = -1;
         }
-        if(key == keyToGoRight){
+        if(key == keyToGoRight) {
             direction = -1;
         }
     }
