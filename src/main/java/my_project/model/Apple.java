@@ -23,11 +23,9 @@ public class Apple extends Fruit {
         drawTool.setCurrentColor(0, 0, 0, 255);
         drawTool.drawCircle(x, y, radius);
 
-        drawTool.setCurrentColor(new Color(0, 255, 73));
-        drawTool.formatText("Arial", 1, 25);
-        drawTool.drawText(50, 80, "score :");
-
-
+        //ddddadaddrawTool.setCurrentColor(new Color(0, 255, 73));
+        //drawTooladadadadd.formatText("Arial", 1, 25);
+        // drawTool.drawText(50, 80, "score :");
     }
 
     @Override

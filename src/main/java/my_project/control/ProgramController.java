@@ -35,6 +35,10 @@ public class ProgramController {
     private Player player02;
 
     private Lemon orange01;
+    private Lemon orange02;
+    private Lemon orange03;
+    private Lemon orange04;
+    private Lemon orange05;
 
 
     /**
@@ -58,6 +62,15 @@ public class ProgramController {
 
         orange01 = new Lemon(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
         viewController.draw(orange01);
+        orange02 = new Lemon(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
+        viewController.draw(orange02);
+        orange03 = new Lemon(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
+        viewController.draw(orange03);
+        orange04 = new Lemon(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
+        viewController.draw(orange04);
+        orange05 = new Lemon(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
+        viewController.draw(orange05);
+
 
         apple02 = new Apple(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
         viewController.draw(apple02);
@@ -99,7 +112,21 @@ public class ProgramController {
         if(checkAndHandleCollision(orange01)){
             orange01.jumpBack();
         }
-
+        if(checkAndHandleCollision(orange01)){
+            orange01.jumpBack();
+        }
+        if(checkAndHandleCollision(orange02)){
+            orange02.jumpBack();
+        }
+        if(checkAndHandleCollision(orange03)){
+            orange03.jumpBack();
+        }
+        if(checkAndHandleCollision(orange04)){
+            orange04.jumpBack();
+        }
+        if(checkAndHandleCollision(orange05)){
+            orange05.jumpBack();
+        }
         if(checkAndHandleCollision(apple02)){
             apple02.jumpBack();
         }
@@ -130,6 +157,18 @@ public class ProgramController {
         }
         if(checkAndHandleCollision2(orange01)){
             orange01.jumpBack();
+        }
+        if(checkAndHandleCollision2(orange02)){
+            orange02.jumpBack();
+        }
+        if(checkAndHandleCollision2(orange03)){
+            orange03.jumpBack();
+        }
+        if(checkAndHandleCollision2(orange04)){
+            orange04.jumpBack();
+        }
+        if(checkAndHandleCollision2(orange05)){
+            orange05.jumpBack();
         }
         if(checkAndHandleCollision2(apple02)){
             apple02.jumpBack();
@@ -199,7 +238,7 @@ public class ProgramController {
     }
 
     private boolean checkAndHandleCollision(Lemon l){
-        return l.collidesWith(player02);
+        return l.collidesWith(player01);
     }
     //TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
 
