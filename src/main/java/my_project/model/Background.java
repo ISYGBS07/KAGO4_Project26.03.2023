@@ -3,6 +3,8 @@ package my_project.model;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
+import java.awt.*;
+
 /**
  * Die Background-Klasse stellt die Umsetzung eines Objekts für den Hintergrund des Apple-Games dar.
  * Hier werden sogenannte Arrays (zu deutsch: Felder) verwendet, die im Unterricht noch nicht behandelt wurden.
@@ -23,16 +25,17 @@ public class Background extends GraphicalObject {
 
 
     public Background(){
-        chosenPhrase = phrases[(int)(Math.random()*phrases.length)];
+        chosenPhrase = ("Hallo");
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(25,100,0,255);
         drawTool.drawFilledRectangle(0,0,1600,1024);
-        drawTool.setCurrentColor(0,0,0,255);
-        drawTool.formatText("Arial",1,25);
-        drawTool.drawText(450,50,chosenPhrase);
+        drawTool.setCurrentColor(new Color(1,1,1));
+        drawTool.formatText("Arial",1,2005);
+        drawTool.drawText(50,50,chosenPhrase);
+        System.out.println(chosenPhrase);
     }
 
     @Override

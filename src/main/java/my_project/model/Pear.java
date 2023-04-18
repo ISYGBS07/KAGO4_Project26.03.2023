@@ -3,6 +3,8 @@ package my_project.model;
 
 import KAGO_framework.view.DrawTool;
 
+import java.awt.*;
+
 public class Pear extends Fruit {
 
     //Attribute
@@ -24,6 +26,11 @@ public class Pear extends Fruit {
         drawTool.drawFilledRectangle(x,y,width,height);
         drawTool.setCurrentColor(0,0,0,255);
         drawTool.drawRectangle(x,y,width,height);
+        if (y < -51){
+            drawTool.setCurrentColor(new Color(1,1,1));
+            drawTool.formatText("Arial",1,25);
+            drawTool.drawText(50,50,"In der Not frisst der Teufel Birnen");
+        }
     }
 
     @Override
@@ -45,7 +52,8 @@ public class Pear extends Fruit {
         //TODO 03 Eine Birne soll von oben herab fallen. Sobald sie unten den Bildschirmrand berührt wird die Methode jumpBack() aufgerufen (siehe TODO 04).
 
     public void jumpBack(){
-        this.y = 0;
+
+        this.y = - 193;
         this.x = Math.random()*(1000-width-200);
     }
 

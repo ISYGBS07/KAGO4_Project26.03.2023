@@ -2,10 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import my_project.Config;
-import my_project.model.Apple;
-import my_project.model.Pear;
-import my_project.model.Player;
-import my_project.model.PowerApple;
+import my_project.model.*;
 
 import java.awt.event.KeyEvent;
 
@@ -37,6 +34,8 @@ public class ProgramController {
     private Player player01;
     private Player player02;
 
+    private Lemon orange01;
+
 
     /**
      * Konstruktor
@@ -57,6 +56,8 @@ public class ProgramController {
         Power01 = new PowerApple(100,100);
         viewController.draw(Power01);
 
+        orange01 = new Lemon(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
+        viewController.draw(orange01);
 
         apple02 = new Apple(Math.random()*(Config.WINDOW_WIDTH-50) + 50, Math.random()*(Config.WINDOW_HEIGHT-50) + 50);
         viewController.draw(apple02);
@@ -82,7 +83,7 @@ public class ProgramController {
         player01 = new Player(50, Config.WINDOW_HEIGHT-100, KeyEvent.VK_A, KeyEvent.VK_D);
         viewController.draw(player01);
         viewController.register(player01);
-        player02 = new Player(150, Config.WINDOW_HEIGHT-100, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+        player02 = new Player(750, Config.WINDOW_HEIGHT-100, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
         viewController.draw(player02);
         viewController.register(player02);
 
@@ -95,6 +96,9 @@ public class ProgramController {
     public void updateProgram(double dt){
         //TODO 08 Nachdem Sie die TODOs 01-07 erledigt haben: Setzen Sie um, dass im Falle einer Kollision (siehe TODO 06 bzw. 07) zwischen dem Spieler und dem Apfel bzw. dem Spieler und der Birne, die jumpBack()-Methode von dem Apfel bzw. der Birne aufgerufen wird.
         //Weitere TODOs folgen und werden im Unterricht formuliert. Spätestens nach TODO 08 sollte der Aufbau des Projekts durchdacht werden.
+        if(checkAndHandleCollision(orange01)){
+            orange01.jumpBack();
+        }
 
         if(checkAndHandleCollision(apple02)){
             apple02.jumpBack();
@@ -123,6 +127,9 @@ public class ProgramController {
         }
         if(checkAndHandleCollision(pear05)){
             pear05.jumpBack();
+        }
+        if(checkAndHandleCollision2(orange01)){
+            orange01.jumpBack();
         }
         if(checkAndHandleCollision2(apple02)){
             apple02.jumpBack();
@@ -183,10 +190,16 @@ public class ProgramController {
         }
     }
     private boolean checkAndHandleCollision(Apple a){
+
         return a.collidesWith(player01);
     }
     private boolean checkAndHandleCollision(Pear p){
+
         return p.collidesWith(player01);
+    }
+
+    private boolean checkAndHandleCollision(Lemon l){
+        return l.collidesWith(player02);
     }
     //TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
 
@@ -197,5 +210,9 @@ public class ProgramController {
     }
     private boolean checkAndHandleCollision2(Apple a2){
         return a2.collidesWith(player02);
+    }
+
+    private boolean checkAndHandleCollision2(Lemon l2){
+        return l2.collidesWith(player02);
     }
 }
